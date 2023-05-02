@@ -1,0 +1,8 @@
+[out:csv(
+  ::id;
+  false
+)];
+(
+  relation["network:wikidata"="Q111736572"]["type"="route_master"];
+);
+out;

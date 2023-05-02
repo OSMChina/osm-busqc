@@ -1,0 +1,17 @@
+{
+  '1': {'route_count': 2},
+  '2': {'route_count': 2},
+  '3': {'route_count': 1},
+  '4': {'route_count': 2},
+  '5A': {'route_count': 2},
+  '5B': {'route_count': 2},
+  '6': {'route_count': 2}, '7': {'route_count': 2},
+  '8': {'route_count': 4},
+  '9': {'route_count': 2}, '10': {'route_count': 2}, '11': {'route_count': 2}, '12': {'route_count': 2}, '13': {'route_count': 2}, '14': {'route_count': 2}, '15': {'route_count': 2}, '16': {'route_count': 2}, '17': {'route_count': 2}, '18': {'route_count': 2},
+  '19': {'route_count': 2}, '20': {'route_count': 2}, '21': {'route_count': 2}, '22': {'route_count': 2},
+  '24': {'route_count': 2},
+  '26': {'route_count': 2}, '27': {'route_count': 2}, '28': {'route_count': 2}, '29': {'route_count': 2}, '30': {'route_count': 2}, '31': {'route_count': 2}, '32': {'route_count': 2}, '33': {'route_count': 2}, '34': {'route_count': 2}, '35': {'route_count': 2}, '36': {'route_count': 2},
+  'K01': {'route_count': 2},
+  'K02': {'route_count': 2},
+  'K03': {'route_count': 2},
+}
