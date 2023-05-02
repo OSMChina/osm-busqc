@@ -69,7 +69,7 @@ An out-of-box scripts to check local bus network integrity.
 所有的输入/缓存都位于当前工作目录, 这意味着你可以通过 cd 切换工作环境.
 以后会增加 `setup.py`
 
-# masters.asserts.py
+# masters.lints.py
 
 内容是一个合法的 python dict. 目前没有明确的 schema, 也没有计划规定 schema. 本项目想要专注于为绘图员提供一个趁手的工具, 不希望太复杂. 如果你是 power user, 可以自行编写自己需要的功能.
 
