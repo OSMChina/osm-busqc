@@ -49,13 +49,13 @@ An out-of-box scripts to check local bus network integrity.
 
 1. 取得程序(clone/download)
 2. 安装依赖
-   `pip install -r osm_busqc/requirements.`
+   `pip install -r osm_busqc/requirements.txt`
 
 ## 设置
 
 1. 设置 OSM 访问凭据. 复制 `password.sample` 为 `password`, 填入 OSM 的账号密码, 以冒号(:)分隔.
-2. 检查和改写 `network_query`, 这是一个 Overpass 检索, 以得到需要检查的主线列表.
-   请参照 [Overpass references](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL) 改写和[试验](https://overpass-api.de/query_form.html).
+2. 检查和改写 `network_query`, 这是一个 Overpass 检索, 以得到需要检查的主线列表.  
+   请参照 [Overpass QL references](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL) 改写和[试验](https://overpass-api.de/query_form.html).  
    随附的样例表示查询具有 `network:wikidata=Q111736572` 的公交主线, 即肇庆公交网络.
 3. 检查和改写 `masters.lints.py`, 具体参照后文.
 
