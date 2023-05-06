@@ -65,13 +65,13 @@ An out-of-box scripts to check local bus network integrity.
 `python3 -m osm_busqc [OPTIONS]`  
 
 ### 命令行参数:
-* `--cache_exp CACHE_EXP`
+* `--cache_exp CACHE_EXP`  
   ISO 时间字符串, 缓存过期时间, 早于此时间的主线/路线/站点缓存被认为过期, 并从 OSM 下载对象.  
-  例如, 可以 `--cache_exp \`date -d "-1 day" -Is\`` 指定过期时间为昨天.
+  例如, 可以 ``--cache_exp `date -d "-1 day" -Is` `` 指定过期时间为昨天.
   参考 [man date(1)](https://man7.org/linux/man-pages/man1/date.1.html)
-* `--lint_file LINT_FILE`
+* `--lint_file LINT_FILE`  
   覆写默认的检查文件路径 `./masters.lints.py`
-* `--masters_list_file MASTERS_LIST_FILE`
+* `--masters_list_file MASTERS_LIST_FILE`  
   使用存储的主线列表, 而非以 Overpass 查询.  
   指定的路径应当是一个文本文件, 每行包括一个主线的 `id`, 不能有空行和注释.  
 
