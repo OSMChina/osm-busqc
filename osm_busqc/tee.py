@@ -7,7 +7,7 @@ from traceback import print_exc
 from .config import DEBUG_STACKTRACE
 
 def good_wrong(*args):
-    return WrongCtxMan(args)
+    return WrongCtxMan(*args)
 
 
 class WrongCtxMan:

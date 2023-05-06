@@ -57,11 +57,24 @@ An out-of-box scripts to check local bus network integrity.
 2. 检查和改写 `network_query`, 这是一个 Overpass 检索, 以得到需要检查的主线列表.  
    请参照 [Overpass QL references](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL) 改写和[试验](https://overpass-api.de/query_form.html).  
    随附的样例表示查询具有 `network:wikidata=Q111736572` 的公交主线, 即肇庆公交网络.
-3. 检查和改写 `masters.lints.py`, 具体参照后文.
+3. 检查和改写 `masters.lints.py`, 参考 [man/masters.lints.py](./man/masters.lints.py.md).  
 
 ## 运行
 
-`python3 -m osm_busqc`
+`python3 -m osm_busqc`  
+`python3 -m osm_busqc [OPTIONS]`  
+
+### 命令行参数:
+* `--cache_exp CACHE_EXP`
+  ISO 时间字符串, 缓存过期时间, 早于此时间的主线/路线/站点缓存被认为过期, 并从 OSM 下载对象.  
+  例如, 可以 `--cache_exp \`date -d "-1 day" -Is\`` 指定过期时间为昨天.
+  参考 [man date(1)](https://man7.org/linux/man-pages/man1/date.1.html)
+* `--lint_file LINT_FILE`
+  覆写默认的检查文件路径 `./masters.lints.py`
+* `--masters_list_file MASTERS_LIST_FILE`
+  使用存储的主线列表, 而非以 Overpass 查询.  
+  指定的路径应当是一个文本文件, 每行包括一个主线的 `id`, 不能有空行和注释.  
+
 所有操作是只读的, 不会向 OSM 提交修改.
 
 ## 多工作区
@@ -69,22 +82,4 @@ An out-of-box scripts to check local bus network integrity.
 所有的输入/缓存都位于当前工作目录, 这意味着你可以通过 cd 切换工作环境.
 以后会增加 `setup.py`
 
-# masters.lints.py
 
-内容是一个合法的 python dict. 目前没有明确的 schema, 也没有计划规定 schema. 本项目想要专注于为绘图员提供一个趁手的工具, 不希望太复杂. 如果你是 power user, 可以自行编写自己需要的功能.
-
-以下是例子:
-
-```python
-{}
-```
-不规定检查内容. 程序会列出所有的路线/站点, 检查一些基本的问题(如首末站不匹配).
-
-
-```python
-{
-  "1": {"route_count":2},
-  "2": {"route_count":2},
-}
-```
-检查应有 `1`, `2` 号主线, 各包括两条线路.

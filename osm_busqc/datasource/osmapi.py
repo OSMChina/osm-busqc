@@ -12,6 +12,7 @@ from osm_easy_api.data_classes.osm_object_primitive import osm_object_primitive
 
 from ..config import DN_MASTERS, DN_ROUTES, DN_PLTFS
 from ..config import URL_OPENSTREETMAP_API, OSM_CREDENTIAL
+from ..config import cache_expiration
 
 for d in [DN_MASTERS,DN_ROUTES,DN_PLTFS]:
     os.makedirs(d,exist_ok=True)
@@ -21,11 +22,16 @@ _conn = osm_easy_api.Api(URL_OPENSTREETMAP_API, *OSM_CREDENTIAL)
 def _load_cache(pth, outdate=None):
     """
     pth: path to load
-    outdate: date before this value are consider outdate and being pruned
+    outdate: float, unix epoch in sec, 
+      date before this value are consider outdate and pruned
+      set to 0 or None to apply global config
+      set to negative to disable outdate
     """
-    #if outdate is not None and path.exists(pth):
-        #if path.stat then
-            # remove file
+    outdate = outdate or cache_expiration()
+    
+    if outdate is not None and path.exists(pth):
+        if path.getmtime(pth)<outdate:
+            os.remove(pth)
     
     if not path.exists(pth):
         return None
@@ -74,10 +80,12 @@ def get_master(id_or_ref, no_cache=False):
     typ = typ or Relation
     fn = pthjoin(DN_MASTERS, str(eid))
 
-    e = _load_cache(fn) 
-    
-    if e is not None:
-        return e
+    if not no_cache:
+        e = _load_cache(fn) 
+        
+        if e is not None:
+            return e
+    # end no_cache
         
     # else
     e = _conn.elements.get(typ,eid)
@@ -91,10 +99,12 @@ def get_route(id_or_ref, no_cache=False):
     typ = typ or Relation
     fn = pthjoin(DN_ROUTES, str(eid))
 
-    e = _load_cache(fn) 
+    if not no_cache:
+        e = _load_cache(fn) 
     
-    if e is not None:
-        return e
+        if e is not None:
+            return e
+    # end no_cache
         
     # else
     e = _conn.elements.get(typ,eid)
@@ -108,10 +118,12 @@ def get_platform(ref, no_cache=False):
     assert typ is not None, "Fail detect platform element type"
     fn = pthjoin(DN_PLTFS, str(eid))
 
-    e = _load_cache(fn) 
+    if not no_cache:
+        e = _load_cache(fn) 
     
-    if e is not None:
-        return e
+        if e is not None:
+            return e
+    # end no_cache
         
     # else
     e = _conn.elements.get(typ,eid)

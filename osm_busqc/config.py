@@ -25,6 +25,8 @@ DEBUG_NETWORK = False
 # depth of stacktrace of assertion fail
 DEBUG_STACKTRACE = 0
 
+CACHE_EXPIRATION = None
+
 # END CONFIG
 
 
@@ -54,3 +56,14 @@ def _set_debug_requests():
 
 if DEBUG_NETWORK:
     _set_debug_requests()
+    
+def set_cache_expiration(isodatetime):
+    from datetime import datetime
+    global CACHE_EXPIRATION
+    CACHE_EXPIRATION = datetime.fromisoformat(isodatetime).timestamp()
+# end set_cache_expiration
+
+def cache_expiration():
+    global CACHE_EXPIRATION
+    return CACHE_EXPIRATION
+# end cache_expiration
